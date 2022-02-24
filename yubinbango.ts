@@ -61,8 +61,11 @@ module YubinBango {
         "p-extended-address": data.extended
       };
       const addrs = elm.querySelectorAll('.' + val);
+      var event = new Event("change", {"bubbles":true, "cancelable":true});
       [].map.call(addrs, (addr) => {
-        return addr.value += (o[val])? o[val] : '';
+        addr.value += (o[val])? o[val] : '';
+        addr.dispatchEvent(event);
+        return addr;
       });
     }
   }
